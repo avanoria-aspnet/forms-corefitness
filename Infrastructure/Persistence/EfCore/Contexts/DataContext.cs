@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Persistence.EfCore.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.EfCore.Contexts;
 
@@ -10,6 +11,6 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     }
 
     /* Add entities below: */
-
+    public DbSet<ContactRequestEntity> ContactRequests => Set<ContactRequestEntity>();
 
 }

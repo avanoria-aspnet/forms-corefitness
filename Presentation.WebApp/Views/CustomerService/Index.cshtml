@@ -1,3 +1,49 @@
-﻿@{
+﻿@model ContactForm
+
+@{
     ViewData["Title"] = "Customer Service";
 }
+
+<div>
+    @TempData["ContactFormMessage"]?.ToString()
+</div>
+
+<section class="contactform-section">
+    <div class="container">
+        <form class="contact-form" asp-controller="CustomerService" asp-action="Index" method="post" novalidate>
+            @Html.AntiForgeryToken()
+
+            <div aria-label="firstname" class="form-group">
+                <label class="form-label" asp-for="FirstName"></label>
+                <input class="form-input" asp-for="FirstName" />
+                <span class="field-validation" asp-validation-for="FirstName"></span>
+            </div>
+
+            <div aria-label="lastname" class="form-group">
+                <label class="form-label" asp-for="LastName"></label>
+                <input class="form-input" asp-for="LastName" />
+                <span class="field-validation" asp-validation-for="LastName"></span>
+            </div>
+
+            <div aria-label="email" class="form-group">
+                <label class="form-label" asp-for="Email"></label>
+                <input class="form-input" asp-for="Email" />
+                <span class="field-validation" asp-validation-for="Email"></span>
+            </div>
+
+            <div aria-label="phone" class="form-group">
+                <label class="form-label" asp-for="PhoneNumber"></label>
+                <input class="form-input" asp-for="PhoneNumber" />
+                <span class="field-validation" asp-validation-for="PhoneNumber"></span>
+            </div>
+
+            <div aria-label="message" class="form-group">
+                <label class="form-label" asp-for="Message"></label>
+                <textarea class="form-input" asp-for="Message"></textarea>
+                <span class="field-validation" asp-validation-for="Message"></span>
+            </div>
+
+            <button aria-label="submit" class="primary-button" type="submit">Submit Message</button>
+        </form>
+    </div>
+</section>

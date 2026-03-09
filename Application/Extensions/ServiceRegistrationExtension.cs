@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Application.CustomerService.ContactRequests;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Extensions;
 
@@ -8,6 +9,7 @@ public static class ServiceRegistrationExtension
     {
         ArgumentNullException.ThrowIfNull(services);
 
+        services.AddScoped<IContactRequestService, ContactRequestService>();
 
         return services;
     }
