@@ -1,6 +1,4 @@
-﻿using Domain.Abstractions.Repositories.CustomerService;
-using Infrastructure.Persistence.EfCore.Contexts;
-using Infrastructure.Persistence.EfCore.Repositories.CustomerService;
+﻿using Infrastructure.Persistence.EfCore.Contexts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +15,6 @@ public static class PersistenceRegistrationExtension
 
         services.AddEfCoreContexts(configuration, env);
 
-        services.AddScoped<IContactRequestRepository, ContactRequestRepository>();
 
         return services;
     }

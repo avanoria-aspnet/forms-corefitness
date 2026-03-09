@@ -1,5 +1,4 @@
-﻿using Domain.Abstractions.Logging;
-using Domain.Exceptions.Custom;
+﻿using Domain.Exceptions.Custom;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
