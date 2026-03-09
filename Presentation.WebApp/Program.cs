@@ -1,6 +1,7 @@
 using Application.Extensions;
 using Infrastructure.Extensions;
 using Infrastructure.Persistence;
+using Presentation.WebApp.Services.MenuNavigation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ builder.Services.AddRouting(options =>
 
 builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 builder.Services.AddApplication(builder.Configuration, builder.Environment);
-
+builder.Services.AddScoped<IMenuNavigationService, MenuNavigationService>();
 
 var app = builder.Build();
 

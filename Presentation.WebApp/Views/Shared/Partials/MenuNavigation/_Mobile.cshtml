@@ -1,0 +1,93 @@
+﻿@{
+    var menu = MenuNavigationService.GetMenu();
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<div class="mobile-nav-wrapper">
+    <button type="button"
+            class="menu-button mobile-nav-toggle"
+            aria-label="Open menu"
+            aria-controls="mobileFlyoutMenu"
+            aria-expanded="false">
+    </button>
+
+    <div class="mobile-nav-overlay" data-mobile-nav-close></div>
+
+    <aside id="mobileFlyoutMenu"
+           class="mobile-flyout-menu"
+           aria-hidden="true">
+        <div class="mobile-flyout-header">
+            <span class="mobile-flyout-title">Menu</span>
+
+            <button type="button"
+                    class="mobile-flyout-close"
+                    aria-label="Close menu"
+                    data-mobile-nav-close>
+            </button>
+        </div>
+
+        <nav class="mobile-menu-list" aria-label="Mobile navigation">
+            @foreach (var item in menu)
+            {
+                var childItems = item.Children ?? [];
+                var hasChildren = childItems.Count > 1;
+                var hasUrl = !string.IsNullOrWhiteSpace(item.Url);
+
+                var isSingleLinkActive =
+                childItems.Count <= 1 &&
+                childItems.Any(x =>
+                x.ControllerName == currentController &&
+                x.ActionName == currentAction);
+
+                var isDropdownActive =
+                childItems.Count > 1 &&
+                childItems.Any(x =>
+                x.ControllerName == currentController &&
+                x.ActionName == currentAction);
+
+                if (!hasChildren && hasUrl)
+                {
+                    <a class="mobile-menu-link @(isSingleLinkActive ? "active" : "")"
+                       href="@item.Url?.ToLower()">
+                        @item.DisplayName
+                    </a>
+                }
+                else if (hasChildren)
+                {
+                    var safeName = item.DisplayName
+                    .ToLower()
+                    .Replace(" ", "-");
+
+                    var collapseId = $"mobile-submenu-{safeName}";
+
+                    <div class="mobile-menu-group @(isDropdownActive ? "active" : "")">
+                        <button type="button"
+                                class="mobile-menu-group-toggle"
+                                aria-expanded="@(isDropdownActive.ToString().ToLower())"
+                                aria-controls="@collapseId">
+                            <span>@item.DisplayName</span>
+                        </button>
+
+                        <div id="@collapseId"
+                             class="mobile-submenu @(isDropdownActive ? "open" : "")">
+                            <div class="mobile-submenu-inner">
+                                @foreach (var child in childItems)
+                                {
+                                    var isChildActive =
+                                    child.ControllerName == currentController &&
+                                    child.ActionName == currentAction;
+
+                                    <a class="mobile-submenu-link @(isChildActive ? "active" : "")"
+                                       href="@child.Url.ToLower()">
+                                        @child.DisplayName
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </nav>
+    </aside>
+</div>

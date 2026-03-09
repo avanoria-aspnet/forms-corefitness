@@ -7,7 +7,7 @@
 
     <div class="mobile-menu">
         <a class="account-button" asp-controller="Auth" asp-action="SignIn"></a>
-        @* <partial name="Navigation/_MobileNavigation" /> *@
+        <partial name="Partials/MenuNavigation/_Mobile" />
     </div>
 </section>
 
@@ -18,7 +18,7 @@
         </a>
     </div>
 
-    @* <partial name="Navigation/_DesktopNavigation" /> *@
+    <partial name="Partials/MenuNavigation/_Desktop" />
 
     <nav class="account-menu menu">
         <a class="signup menu-item" asp-controller="Auth" asp-action="SignUp">Become Member</a>
