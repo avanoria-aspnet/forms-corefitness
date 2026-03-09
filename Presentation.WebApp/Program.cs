@@ -1,11 +1,17 @@
 using Application.Extensions;
 using Infrastructure.Extensions;
 using Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Presentation.WebApp.Routing;
 using Presentation.WebApp.Services.MenuNavigation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Conventions.Add(new RouteTokenTransformerConvention(new MenuUrlRewriter()));
+});
+
 builder.Services.AddRouting(options =>
 {
     options.LowercaseUrls = true;

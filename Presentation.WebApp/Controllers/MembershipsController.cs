@@ -3,6 +3,7 @@ using Presentation.WebApp.Attributes.MenuNavigation;
 
 namespace Presentation.WebApp.Controllers;
 
+[Route("[controller]")]
 public class MembershipsController : Controller
 {
     [MenuItem("Memberships", 1)]
