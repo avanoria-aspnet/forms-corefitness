@@ -1,0 +1,36 @@
+﻿@{
+    var pageTitle = !string.IsNullOrWhiteSpace(ViewData["Title"]?.ToString())
+            ? $"{ViewData["Title"]} | CoreFitness" : "CoreFitness | Gym and Fitness";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@pageTitle</title>
+    <script type="importmap"></script>
+    <script src="https://kit.fontawesome.com/55d9285a26.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/favicon.ico" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Presentation.WebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-layout">
+        <header>
+            <partial name="Partials/_HeaderSection" />
+
+            @if (IsSectionDefined("Hero"))
+                @RenderSection("Hero", required: false) 
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <footer>
+            <partial name="Partials/_FooterSection" />
+        </footer>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

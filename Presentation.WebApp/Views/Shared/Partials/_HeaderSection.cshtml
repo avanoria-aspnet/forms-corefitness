@@ -1,0 +1,28 @@
+﻿<section class="mobile-header-section">
+    <div class="logo">
+        <a class="logotype-link" href="/">
+            <img src="~/images/logotype-text.png" alt="CoreFitness Group">
+        </a>
+    </div>
+
+    <div class="mobile-menu">
+        <a class="account-button" asp-controller="Auth" asp-action="SignIn"></a>
+        <partial name="Navigation/_MobileNavigation" />
+    </div>
+</section>
+
+<section class="header-section">
+    <div class="logo">
+        <a class="logotype-link" href="/">
+            <img src="~/images/logotype.png" alt="CoreFitness Group">
+        </a>
+    </div>
+
+    <partial name="Navigation/_DesktopNavigation" />
+
+    <nav class="account-menu menu">
+        <a class="signup menu-item" asp-controller="Auth" asp-action="SignUp">Become Member</a>
+        <a class="primary-button offset" asp-controller="Auth" asp-action="SignIn">Sign In</a>
+    </nav>
+</section>
+
